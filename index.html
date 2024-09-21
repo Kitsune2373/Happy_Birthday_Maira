@@ -6,6 +6,7 @@
     <title>Kejutan Spesial Untukmu</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="timeline.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
         
@@ -118,146 +119,131 @@
         }
         
         .timeline {
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 0;
-    }
-
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--secondary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12px;
+            background-color: var(--background-color);
+            border: 4px solid var(--secondary-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .right::after {
+            left: -16px;
+        }
+        
+        .content {
+            padding: 20px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .content::before {
+            content: '';
+            position: absolute;
+            top: 18px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        
+        .left .content::before {
+            right: -15px;
+            border-width: 10px 0 10px 15px;
+            border-color: transparent transparent transparent white;
+        }
+        
+        .right .content::before {
+            left: -15px;
+            border-width: 10px 15px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
+        
+        @media only screen and (max-width: 768px) {
     .timeline::after {
-        content: '';
-        position: absolute;
-        width: 6px;
-        background-color: #ff69b4;
-        top: 0;
-        bottom: 0;
-        left: 50%;
-        margin-left: -3px;
+        left: 5%; /* Pindahkan garis tengah ke kiri di perangkat mobile */
     }
 
     .timeline-item {
-        padding: 10px 40px;
-        position: relative;
-        background-color: inherit;
-        width: 50%;
+        width: 100%; /* Lebarkan timeline-item menjadi 100% */
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .right, .left {
+        left: 0; /* Hilangkan posisi kiri-kanan */
     }
 
     .timeline-item::after {
-        content: '';
-        position: absolute;
-        width: 25px;
-        height: 25px;
-        right: -17px;
-        background-color: white;
-        border: 4px solid #ff69b4;
-        top: 15px;
-        border-radius: 50%;
-        z-index: 1;
+        left: 15px; /* Pindahkan titik ke kiri */
+        right: auto;
     }
 
-    .left {
-        left: 0;
-    }
-
-    .right {
-        left: 50%;
-    }
-
-    .left::before {
-        content: " ";
-        height: 0;
-        position: absolute;
-        top: 22px;
-        width: 0;
-        z-index: 1;
-        right: 30px;
-        border: medium solid #ff69b4;
-        border-width: 10px 0 10px 10px;
-        border-color: transparent transparent transparent #ff69b4;
-    }
-
-    .right::before {
-        content: " ";
-        height: 0;
-        position: absolute;
-        top: 22px;
-        width: 0;
-        z-index: 1;
-        left: 30px;
-        border: medium solid #ff69b4;
-        border-width: 10px 10px 10px 0;
-        border-color: transparent #ff69b4 transparent transparent;
-    }
-
-    .right::after {
-        left: -16px;
-    }
-
-    .timeline-content {
-        padding: 20px 30px;
-        background-color: white;
-        position: relative;
-        border-radius: 6px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    /* Mobile responsive styles */
-    @media screen and (max-width: 768px) {
-        .timeline::after {
-            left: 31px;
-        }
-        
-        .timeline-item {
-            width: 100%;
-            padding-left: 70px;
-            padding-right: 25px;
-        }
-        
-        .timeline-item::before {
-            left: 60px;
-            border: medium solid #ff69b4;
-            border-width: 10px 10px 10px 0;
-            border-color: transparent #ff69b4 transparent transparent;
-        }
-
-        .left::after, .right::after {
-            left: 15px;
-        }
-
-        .right {
-            left: 0%;
-        }
-        
-        .timeline-content {
-            padding: 15px 20px;
-            margin-bottom: 20px;
-        }
-    }
-
-    /* Additional mobile optimizations */
-    @media screen and (max-width: 480px) {
-        .timeline-item {
-            padding-left: 50px;
-            padding-right: 15px;
-        }
-        
-        .timeline-item::before {
-            left: 40px;
-        }
-        
-        .timeline::after {
-            left: 21px;
-        }
-        
-        .left::after, .right::after {
-            left: 5px;
-        }
-        
-        .timeline-content {
-            padding: 10px 15px;
-        }
+    .left::before, .right::before {
+        left: 45px; /* Posisikan panah ke kiri */
+        right: auto;
     }
             
+            .content {
+                margin-bottom: 30px;
+            }
+            
+            .content h3 {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+            }
+            
+            .content p {
+                font-size: 0.9rem;
+            }
+        }
+        .content {
+            padding: 20px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
         .message {
             background-color: #ffe4e1;
             border-radius: 20px;
